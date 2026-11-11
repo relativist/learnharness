@@ -58,6 +58,8 @@ Nonsecret settings are deltas in `<data root>/settings.json`; absent values reso
 
 Ordinary Next development can read `.env.local`. Real environment keys take precedence over saved keys. Saved auth is restrictive-permission plaintext, not an encrypted vault. Packaged Electron sets separate data/auth locations under `userData`; it does not use the repo development profile.
 
+ChatGPT connections support HTTP(S) proxies from the process environment. Start LearnHarness from the same terminal after enabling your proxy (for example, `pproxyon`): `HTTP_PROXY`/`HTTPS_PROXY` and their lowercase forms are used, with `ALL_PROXY` as a fallback. `NO_PROXY` is respected; `localhost`, `127.0.0.1`, and `::1` always bypass the proxy so the desktop shell can reach its local server. Fully quit and relaunch the app after changing proxy settings. LearnHarness uses exported environment variables; it does not read shell startup files such as `~/.bashrc`, and an app opened from a desktop launcher may not inherit the terminal's proxy environment. The external browser used for ChatGPT sign-in must have its own working route to the sign-in service.
+
 Provider-specific setup and limitations: [Claude Code](claude-code.md), [custom endpoints](custom-providers.md), [context/cost accounting](compaction-accounting.md).
 
 ### Subscription connections in web/dev

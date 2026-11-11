@@ -38,6 +38,11 @@ const fs = require("node:fs");
 const http = require("node:http");
 const net = require("node:net");
 const path = require("node:path");
+const { configureEnvironmentProxy } = require("./proxy-env.cjs");
+
+// ChatGPT auth/catalog requests use Node fetch, independently of Chromium.
+// Do this before creating any provider services or making network requests.
+configureEnvironmentProxy(process.env);
 
 // Mirrors SIDEBAR_AUTOCLOSE in components/sidebar.tsx — keep in sync (the
 // renderer owns the number; this is the IPC widen target).

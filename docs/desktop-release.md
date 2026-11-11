@@ -16,6 +16,18 @@ macOS icon compilation requires **macOS 26+ and Xcode 26+** for `build/icon.icon
 
 The custom app bar remains on all platforms. macOS has left traffic lights/system menu; Windows/Linux use right-side native Window Controls Overlay and reveal the native menu with Alt.
 
+### Launching through a console proxy
+
+To use an HTTP(S) proxy in the desktop app, start it from the same terminal after enabling the proxy, for example with `pproxyon`. The app reads exported proxy variables; it does not source `~/.bashrc`, and desktop launchers may not inherit the terminal environment. Quit the app completely before restarting it after proxy changes. `HTTP_PROXY`/`HTTPS_PROXY` (or lowercase equivalents), `ALL_PROXY` as a fallback, and `NO_PROXY` are supported. Loopback traffic to `localhost`, `127.0.0.1`, and `::1` always stays direct. ChatGPT sign-in opens an external browser, which must independently be able to reach the sign-in service.
+
+For example, from the directory containing a built AppImage:
+
+```sh
+./LearnHarness-0.6.0-x86_64.AppImage
+```
+
+Replace `0.6.0` with the version in the AppImage filename.
+
 ## Build pipeline
 
 Build **on each target OS**. Next traces native binaries for its build machine; a macOS standalone tree is not a Windows/Linux payload.
